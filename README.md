@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/BASIN-3D/docker-django-basin3d/actions/workflows/docker-image.yml/badge.svg)](https://github.com/BASIN-3D/docker-django-basin3d/actions/workflows/docker-image.yml)
+
 # docker-django-basin3d
 Docker image definition for building a Django REST API BASIN-3D with public data plugins
 
