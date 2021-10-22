@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.8.5
+ARG PYTHON_VERSION=3.8
 FROM python:${PYTHON_VERSION}
 MAINTAINER Valerie Hendrix <vchendrix@lbl.gov>
 
