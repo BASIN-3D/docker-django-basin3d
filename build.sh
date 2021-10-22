@@ -41,7 +41,8 @@ echo " Checking for a new python image "
 echo "************************************"
 docker pull python:$PYTHON_VERSION
 
-DOCKER_TAG="${TAG}-p$(git rev-list HEAD --count)"
+PATCH_TAG=-p$(git rev-list HEAD --count)
+DOCKER_TAG="${TAG}${PATCH_TAG}"
 # CREATE image_version.yml
 echo "****************************"
 echo "BUILDING image_version"
@@ -60,4 +61,5 @@ fi
 
 echo "docker build ${DOCKER_BUILD_OPTIONS} -t ${IMAGE_NAME} $BUILD_ARGS ."
 docker build ${DOCKER_BUILD_OPTIONS}  -t ${IMAGE_NAME} $BUILD_ARGS .
-
+echo "Taggining image as '${IMAGE_NAME%$PATCH_TAG}'"
+docker tag ${IMAGE_NAME} ${IMAGE_NAME%$PATCH_TAG} 
