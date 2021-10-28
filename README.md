@@ -3,7 +3,7 @@
 # docker-django-basin3d
 Docker image definition for building a Django REST API BASIN-3D with public data plugins
 
-*The official django-basin3d docker image, made in a collaboration with [ESS-DIVE](https://github.com/ess-dive)*
+*The official django-basin3d docker image*
 
 ## What is django-basin3d?
 *from [django-basin3d.readthedocs.org](https://django-basin3d.readthedocs.org)*
