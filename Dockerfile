@@ -20,7 +20,7 @@ WORKDIR /app
 # Run OS updates
 # create unprivileged user, create application directories, and ensure proper permissions
 # Install application dependencies
-RUN apt-get update &&  apt-get install -y --no-install-recommends  netcat git \
+RUN apt-get update &&  apt-get install -y --no-install-recommends  netcat-traditional git \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd -g ${IMAGE_GID} webapp \
     && useradd -u ${IMAGE_UID} -g ${IMAGE_GID} -c 'Web app User'  --no-create-home webapp \
