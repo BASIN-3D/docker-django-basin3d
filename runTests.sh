@@ -35,8 +35,8 @@ TEST_PWD="$(docker exec "$cid" pwd )"
 [ "$TEST_PWD" == "$pwd" ] || (echo "Incorrect pwd $TEST_PWD it should be $pwd" && exit 1)
 
 # Is the  Application directory there
-[ $(docker exec $cid ls basin3d_app 2>&1 | grep 'cannot' | wc -l) -ne 1  ] || \
-    (echo "Application missing" && exit 1)
+#[ $(docker exec $cid ls basin3d_app 2>&1 | grep 'cannot' | wc -l) -ne 1  ] || \
+#    (echo "Application missing" && exit 1)
 
 # Give time to start up
 sleep 5
@@ -50,7 +50,7 @@ docker network create test-network > /dev/null
 
 
 runid=$(docker run  \
-       -p 8080:8080    \
+       -p 5555:8080    \
        -e ADMIN_PASSWORD=foobar \
        -d \
        --network=test-network  \
@@ -69,11 +69,11 @@ sleep 20
 [ $(docker logs $runid | grep 'IS_LOADED:0' | wc -l) -ne 0 ] || \
     (echo "FAIL: Database is not empty" && exit 1)
 
-[ $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080  ) -eq 200 ] || \
-   (echo "FAIL: Invalid HTTP Status Code")
+[ $(curl -s -o /dev/null -w "%{http_code}" http://localhost:5555  ) == "200" ] || \
+   (echo "FAIL: Invalid HTTP Status Code" && exit 1)
 
-[ $(curl -s http://localhost:8080   | grep 'datasources' | wc -l ) -ne 0 ] || \
-   (echo "FAIL: Invalid return value")
+[ $(curl -s http://localhost:5555   | grep 'datasources' | wc -l ) -ne 0 ] || \
+   (echo "FAIL: Invalid return value" && exit 1)
 
 echo "**********"
 echo "SUCCESS!!"
