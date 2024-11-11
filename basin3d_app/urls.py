@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django_basin3d import urls as burls
-from django.conf.urls import url, include
+from django.urls import re_path, include
 from django.contrib import admin
 
 admin.autodiscover()
@@ -22,7 +22,7 @@ admin.autodiscover()
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^', include(burls)),
-    url(r'^admin/', admin.site.urls),  # admin site
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(r'^', include(burls)),
+    re_path(r'^admin/', admin.site.urls),  # admin site
+    re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
